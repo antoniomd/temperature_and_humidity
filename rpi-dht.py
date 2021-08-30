@@ -35,8 +35,10 @@ def main():
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
     # Se muestra en el Terminal los valores leidos
-    print('La temperatura es %f ºC y la humedad es %f %', temperature, humidity)
-
+    if humidity is not None and temperature is not None:
+        print('Temperatura = {0:0.1f} ºC  Humedad = {1:0.1f} %'.format(temperature, humidity))
+    else:
+        print('Fallo en la medida')
     # Se enviará la información mediante un mensaje a través un bot
     # telegram_bot_sendtext('La temperatura es %f ºC y la humedad es %f %', temperature, humidity)
 
